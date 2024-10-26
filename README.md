@@ -1,7 +1,4 @@
-# Sudoku-Checker
-Sudoku checker created with JavaScript
-
-# Sudoku Validator
+# Sudoku Checker
 
 This project contains JavaScript functions for validating Sudoku puzzles by checking rows, columns, and 3x3 sections for the required values. It includes two sample puzzles for testing purposes.
 
