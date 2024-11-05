@@ -1,0 +1,95 @@
+/* Base styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Centering and layout */
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.container {
+    text-align: center;
+    max-width: 320px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Sudoku grid styling */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 3px;
+    width: 100%;
+}
+
+.cell {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    border: 1px solid #ddd;
+    background-color: #fafafa;
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Emphasize 3x3 grid sections */
+.cell:nth-child(3n+1) {
+    border-left: 2px solid #666;
+}
+.cell:nth-child(3n) {
+    border-right: 2px solid #666;
+}
+.grid > :nth-child(n+19):nth-child(-n+27),
+.grid > :nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid #666;
+}
+
+/* Button styling */
+.button {
+    margin-top: 15px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+/* Result message styling */
+.result {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+.result.valid {
+    color: #28a745;
+}
+.result.invalid {
+    color: #dc3545;
+}
