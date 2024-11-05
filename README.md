@@ -71,4 +71,3 @@ This project is open source and available under the MIT License. Feel free to us
 
 Thank you for checking out the Sudoku Validator! If you have suggestions or improvements, feel free to contribute or open an issue.
 
-\
