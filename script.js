@@ -1,26 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('sudokuGrid');
-    for (let i = 0; i < 81; i++) {
-        const cell = document.createElement('input');
-        cell.setAttribute('type', 'number');
-        cell.setAttribute('min', '1');
-        cell.setAttribute('max', '9');
-        cell.classList.add('cell');
-        grid.appendChild(cell);
+
+    // Generate 9 sections (3x3 blocks)
+    for (let section = 0; section < 9; section++) {
+        const sectionDiv = document.createElement('div');
+        sectionDiv.classList.add('section');
+
+        // Create 9 cells per section
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('input');
+            cell.setAttribute('type', 'number');
+            cell.setAttribute('min', '1');
+            cell.setAttribute('max', '9');
+            cell.classList.add('cell');
+            sectionDiv.appendChild(cell);
+        }
+        grid.appendChild(sectionDiv);
     }
 });
 
 function getPuzzle() {
     const cells = document.querySelectorAll('.cell');
     let puzzle = [];
-    for (let i = 0; i < 9; i++) {
-        let row = [];
-        for (let j = 0; j < 9; j++) {
-            const value = parseInt(cells[i * 9 + j].value) || 0;
-            row.push(value);
+    let row = [];
+
+    cells.forEach((cell, index) => {
+        const value = parseInt(cell.value) || 0;
+        row.push(value);
+
+        // Add row to puzzle every 9 cells
+        if ((index + 1) % 9 === 0) {
+            puzzle.push(row);
+            row = [];
         }
-        puzzle.push(row);
-    }
+    });
+
     return puzzle;
 }
 
