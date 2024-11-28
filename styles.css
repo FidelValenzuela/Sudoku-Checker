@@ -1,28 +1,22 @@
 /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #1e293b; /* Modern dark blue-gray for contrast */
+    background-color: #1e293b;
 }
 
-/* Blue Card Styling */
-.bg-gray-900 {
-    max-width: 34rem; /* Ensure the card contains all elements */
-    width: 100%; /* Make it responsive */
-}
-
-/* Sudoku Grid Container Styling */
+/* Sudoku grid styling */
 .sudoku-grid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
-    width: 27rem; /* Ensure grid fits perfectly inside the white background */
+    width: 27rem;
     gap: 0;
-    background-color: #f3f4f6; /* Light gray for grid background */
-    border-radius: 0.5rem; /* Rounded edges */
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 2px solid #d1d5db;
 }
 
-/* Input Cell Styling */
+/* Input cell styling */
 .cell {
     background-color: white;
     color: black;
@@ -34,27 +28,17 @@ body {
     line-height: 3rem;
 }
 
-.cell.border-t-2 {
-    border-top-width: 2px;
+/* Confetti canvas styling */
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    pointer-events: none;
 }
 
-.cell.border-l-2 {
-    border-left-width: 2px;
-}
-
-/* Dropdown Menu Styling */
-select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='gray'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1.5rem 1.5rem;
-    appearance: none;
-    padding-right: 2.5rem; /* Space for arrow */
-    cursor: pointer;
-}
-
-/* Buttons */
-button {
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+/* Hover effect for Validate button */
+#validateButton:hover {
+    filter: brightness(1.2); /* Makes the button brighter on hover */
     cursor: pointer;
 }
