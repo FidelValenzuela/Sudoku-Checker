@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.getElementById('sudokuGrid');
 
-    // Create 9x9 grid
+    // Dynamically generate a 9x9 grid
     for (let row = 0; row < 9; row++) {
         for (let col = 0; col < 9; col++) {
             const cell = document.createElement('input');
@@ -9,36 +9,82 @@ document.addEventListener('DOMContentLoaded', () => {
             cell.setAttribute('min', '1');
             cell.setAttribute('max', '9');
             cell.classList.add('cell', 'bg-white', 'border', 'border-gray-300', 'text-center');
-            cell.style.width = '3rem';
-            cell.style.height = '3rem';
-
-            // Add thicker borders for 3x3 sections
-            if (row % 3 === 0 && row !== 0) cell.style.borderTopWidth = '2px';
-            if (col % 3 === 0 && col !== 0) cell.style.borderLeftWidth = '2px';
-
             grid.appendChild(cell);
         }
     }
 });
 
-// Update specific row in the grid
+// Update a specific row
 function updateRow() {
     const rowIndex = parseInt(document.getElementById('rowSelect').value);
     const rowInput = document.getElementById('rowInput').value;
 
-    // Validate input
     if (rowInput.length !== 9 || !/^\d+$/.test(rowInput)) {
-        alert('Please enter exactly 9 digits (1-9).');
+        alert("Please enter exactly 9 numbers (1-9).");
         return;
     }
 
     const cells = document.querySelectorAll('.cell');
     for (let i = 0; i < 9; i++) {
-        const cellIndex = rowIndex * 9 + i;
-        cells[cellIndex].value = rowInput[i];
+        cells[rowIndex * 9 + i].value = rowInput[i];
     }
 }
 
+// Update all rows
+function updateAllRows() {
+    const allRowsInput = document.getElementById('allRowsInput').value;
+
+    if (allRowsInput.length !== 81 || !/^\d+$/.test(allRowsInput)) {
+        alert("Please enter exactly 81 numbers (1-9).");
+        return;
+    }
+
+    const cells = document.querySelectorAll('.cell');
+    for (let i = 0; i < 81; i++) {
+        cells[i].value = allRowsInput[i];
+    }
+}
+
+// Validate Sudoku
+function validateSudoku() {
+    const puzzle = getPuzzle();
+    const resultElement = document.getElementById('result');
+    const validateButton = document.getElementById('validateButton');
+
+    // Reset button to orange before validating
+    validateButton.classList.remove('bg-red-500', 'bg-green-500');
+    validateButton.classList.add('bg-orange-500', 'hover:bg-orange-600');
+    validateButton.style.backgroundColor = "";
+    resultElement.textContent = "";
+
+    if (sudokuIsValid(puzzle)) {
+        resultElement.textContent = "The puzzle is valid!";
+        resultElement.style.color = "green";
+        validateButton.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+        validateButton.classList.add('bg-green-500');
+        validateButton.style.backgroundColor = "green";
+        showConfetti();
+    } else {
+        resultElement.textContent = "The puzzle is invalid.";
+        resultElement.style.color = "red";
+        validateButton.classList.remove('bg-orange-500', 'hover:bg-orange-600');
+        validateButton.classList.add('bg-red-500');
+        validateButton.style.backgroundColor = "red";
+    }
+}
+
+// Confetti effect
+function showConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const confetti = new ConfettiGenerator({ target: canvas });
+    confetti.render();
+
+    setTimeout(() => {
+        confetti.clear();
+    }, 5000);
+}
+
+// Utility functions
 function getPuzzle() {
     const cells = document.querySelectorAll('.cell');
     let puzzle = [];
@@ -101,17 +147,4 @@ function sudokuIsValid(puzzle) {
         }
     }
     return true;
-}
-
-function validateSudoku() {
-    const puzzle = getPuzzle();
-    const resultElement = document.getElementById('result');
-
-    if (sudokuIsValid(puzzle)) {
-        resultElement.textContent = "The puzzle is valid!";
-        resultElement.style.color = "green";
-    } else {
-        resultElement.textContent = "The puzzle is invalid.";
-        resultElement.style.color = "red";
-    }
 }
