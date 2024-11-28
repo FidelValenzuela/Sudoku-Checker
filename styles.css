@@ -1,108 +1,60 @@
-/* Reset */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-}
-
-/* Body styling */
+/* General Styling */
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #282c34;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e293b; /* Modern dark blue-gray for contrast */
 }
 
-/* Container styling */
-.container {
-    text-align: center;
-    max-width: 350px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+/* Blue Card Styling */
+.bg-gray-900 {
+    max-width: 34rem; /* Ensure the card contains all elements */
+    width: 100%; /* Make it responsive */
 }
 
-h1 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Grid layout */
-.grid {
+/* Sudoku Grid Container Styling */
+.sudoku-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(9, 1fr);
+    width: 27rem; /* Ensure grid fits perfectly inside the white background */
+    gap: 0;
+    background-color: #f3f4f6; /* Light gray for grid background */
+    border-radius: 0.5rem; /* Rounded edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d1d5db;
 }
 
-/* 3x3 block styling */
-.section {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 3px;
-    padding: 6px;
-    background-color: #e0e0e0;
-    border-radius: 8px;
-    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* Individual cell styling */
+/* Input Cell Styling */
 .cell {
-    width: 100%;
-    height: 40px;
+    background-color: white;
+    color: black;
+    border: 1px solid #d1d5db;
     text-align: center;
-    font-size: 18px;
-    color: #333;
-    background-color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s;
+    font-size: 1.25rem;
+    height: 3rem;
+    width: 3rem;
+    line-height: 3rem;
 }
 
-.cell:focus {
-    background-color: #d3f9d8;
-    outline: none;
+.cell.border-t-2 {
+    border-top-width: 2px;
 }
 
-.cell:hover {
-    background-color: #e8e8e8;
+.cell.border-l-2 {
+    border-left-width: 2px;
 }
 
-/* Button styling */
-.button {
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 8px;
+/* Dropdown Menu Styling */
+select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='gray'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 011.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5rem 1.5rem;
+    appearance: none;
+    padding-right: 2.5rem; /* Space for arrow */
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #0056b3;
-}
-
-/* Result styling */
-.result {
-    margin-top: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.result.valid {
-    color: #28a745;
-}
-
-.result.invalid {
-    color: #dc3545;
+/* Buttons */
+button {
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    cursor: pointer;
 }
