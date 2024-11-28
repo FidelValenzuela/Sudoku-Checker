@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Checker</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js/dist/index.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-800 text-white flex flex-col items-center justify-center min-h-screen">
+<body class="bg-gray-800 text-white flex flex-col items-center justify-center min-h-screen relative">
+    <!-- Main container -->
     <div class="bg-gray-900 p-10 rounded-lg shadow-lg text-center">
         <h1 class="text-3xl font-bold mb-6 text-white">Sudoku Checker</h1>
         
-        <!-- Sudoku Grid -->
+        <!-- Sudoku grid -->
         <div class="bg-gray-200 rounded-lg p-4 flex justify-center items-center mb-6">
             <div id="sudokuGrid" class="sudoku-grid"></div>
         </div>
         
-        <!-- Dropdown and input for specific rows -->
+        <!-- Update specific row -->
         <div class="mb-6">
             <label for="rowSelect" class="block mb-2 text-lg">Select Row:</label>
             <select id="rowSelect" class="block w-full p-2 rounded border-gray-300 bg-white text-black cursor-pointer">
@@ -37,24 +39,41 @@
                 placeholder="Enter 9 numbers only"
                 maxlength="9"
             />
-            <button
-                onclick="updateRow()"
-                class="block w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
-            >
+            <button onclick="updateRow()" class="block w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
                 Update Row
             </button>
         </div>
 
-        <!-- Buttons -->
+        <!-- Update all rows -->
+        <div class="mb-6">
+            <label for="allRowsInput" class="block mb-2 text-lg">Enter All Rows (81 Numbers):</label>
+            <input
+                id="allRowsInput"
+                class="block w-full p-2 rounded border-gray-300 text-black text-center"
+                type="text"
+                placeholder="Enter 81 numbers for the entire grid"
+                maxlength="81"
+            />
+            <button onclick="updateAllRows()" class="block w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded">
+                Update All Rows
+            </button>
+        </div>
+
+        <!-- Validate button -->
         <button
-            onclick="validateSudoku()"
-            class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded mb-2"
-        >
-            Validate Sudoku
-        </button>
+    onclick="validateSudoku()"
+    id="validateButton"
+    class="block w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded mb-2"
+>
+    Validate Sudoku
+</button>
+
         <div id="result" class="text-lg font-bold"></div>
     </div>
 
+    <!-- Confetti container -->
+    <canvas id="confettiCanvas" class="absolute top-0 left-0 w-full h-full pointer-events-none"></canvas>
+    
     <script src="script.js"></script>
 </body>
 </html>
