@@ -4,17 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku Checker</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Sudoku Checker</h1>
-        <div class="grid" id="sudokuGrid">
-            <!-- 81 input cells for Sudoku puzzle will be dynamically generated here -->
+<body class="bg-gray-800 text-white flex flex-col items-center justify-center min-h-screen">
+    <div class="bg-gray-900 p-10 rounded-lg shadow-lg text-center">
+        <h1 class="text-3xl font-bold mb-6 text-white">Sudoku Checker</h1>
+        
+        <!-- Sudoku Grid -->
+        <div class="bg-gray-200 rounded-lg p-4 flex justify-center items-center mb-6">
+            <div id="sudokuGrid" class="sudoku-grid"></div>
         </div>
-        <button class="button" onclick="validateSudoku()">Validate</button>
-        <div class="result" id="result"></div>
+        
+        <!-- Dropdown and input for specific rows -->
+        <div class="mb-6">
+            <label for="rowSelect" class="block mb-2 text-lg">Select Row:</label>
+            <select id="rowSelect" class="block w-full p-2 rounded border-gray-300 bg-white text-black cursor-pointer">
+                <option value="0">Row 1</option>
+                <option value="1">Row 2</option>
+                <option value="2">Row 3</option>
+                <option value="3">Row 4</option>
+                <option value="4">Row 5</option>
+                <option value="5">Row 6</option>
+                <option value="6">Row 7</option>
+                <option value="7">Row 8</option>
+                <option value="8">Row 9</option>
+            </select>
+            <input
+                id="rowInput"
+                class="block w-full p-2 mt-2 rounded border-gray-300 text-black text-center"
+                type="text"
+                placeholder="Enter 9 numbers only"
+                maxlength="9"
+            />
+            <button
+                onclick="updateRow()"
+                class="block w-full mt-2 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded"
+            >
+                Update Row
+            </button>
+        </div>
+
+        <!-- Buttons -->
+        <button
+            onclick="validateSudoku()"
+            class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded mb-2"
+        >
+            Validate Sudoku
+        </button>
+        <div id="result" class="text-lg font-bold"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
